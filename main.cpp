@@ -21,7 +21,6 @@ Matrix conv(conv_param &co, const Matrix &in){
     int out_size_r = (in.row+co.pad*2-co.kernel_size)/co.stride+1;
     int out_size_c = (in.column+co.pad*2-co.kernel_size)/co.stride+1;
     float *out_data = new float[co.out_channels*out_size_r*out_size_c];
-    #pragma omp parallel for
     for (int o = 0; o < co.out_channels; o++){
         float bias = co.p_bias[o];
         float kernels[co.in_channels*co.kernel_size*co.kernel_size];
@@ -60,7 +59,6 @@ Matrix optimize(conv_param &co, const Matrix &in){
     int out_size_r = (in_size_r+co.pad*2-co.kernel_size)/co.stride+1;
     int out_size_c = (in_size_c+co.pad*2-co.kernel_size)/co.stride+1;
     float *out_data = new float[co.out_channels*out_size_r*out_size_c];
-    #pragma omp parallel for
     for (int o = 0; o < co.out_channels; o++){
         float bias = co.p_bias[o];
         float kernels[co.in_channels*co.kernel_size*co.kernel_size];
