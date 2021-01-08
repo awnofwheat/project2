@@ -42,7 +42,6 @@ Matrix conv(conv_param &co, const Matrix &in){
                         }
                     }
                 }
-                //relu
                 if(sum < 0)
                     sum = 0;
                 out_data[o*out_size_c*out_size_r+r*out_size_c+c] = sum;
